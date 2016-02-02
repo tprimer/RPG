@@ -23,16 +23,10 @@ namespace ConsoleRPG
 
         private static int free_encumberance = 30;
 
-        public Character(string n, int h, int a, int d)
+        public Character(string n, int speed = 0, int strength = 0, int intellect = 0, int willpower = 0)
         {
-            name = n;
-            HP = h;
-            attack = a;
-            defense = d;
-            speed = 30;
-            strength = 30;
-            willpower = 30;
-            intellect = 30;
+            name = n; HP = 5+strength+willpower; attack = 0; defense = 0;
+            this.speed = speed; this.strength = strength; this.intellect = intellect; this.willpower = willpower;
             armour = new Armour("Clothes",0,0,0);
             main_hand = new Nothing();
             off_hand = new Nothing();
@@ -49,9 +43,10 @@ namespace ConsoleRPG
             //foreach(Weapon w in weapons){ w.print_stats(); }
         }
 
-        public void set_abilities(int s, int t, int i, int w) {
-            speed = s; strength = t; intellect = i; willpower = w;
-        }
+        public void set_speed(int s) { speed = s; }
+        public void set_strength(int t) { speed = t; }
+        public void set_intellect(int i) { speed = i; }
+        public void set_willpower(int w) { speed = w; }
         public void set_MH(Item item) { main_hand = item; set_encumberance(); }
         public void set_OH(Item item) { off_hand = item; set_encumberance(); }
         public void set_armour(Armour a) { armour = a; set_encumberance(); }
@@ -77,7 +72,7 @@ namespace ConsoleRPG
 
     public class Player : Character
     {
-        public Player(string name, int hitpoints, int attack, int defense) : base(name, hitpoints, attack, defense)
+        public Player(string name, int speed = 0, int strength = 0, int intellect = 0, int willpower = 0) : base(name,speed,strength,intellect,willpower)
         {
             // Sweet
         }

@@ -8,7 +8,7 @@ namespace ConsoleRPG
 
         public static int get_dodge(Character target, Weapon weapon)
         {
-            int dodge_bonus = (int)((target.get_speed() * 0.5 + target.get_defense() * 0.5) * weapon.get_dodge_mod());
+            int dodge_bonus = target.get_speed()+target.get_defense() + (int)weapon.get_dodge_mod();
             if (debug) { Console.WriteLine("dodge_bonus: {0}", dodge_bonus); }
             return dodge_bonus;
         }

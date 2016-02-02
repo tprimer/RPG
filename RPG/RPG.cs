@@ -9,27 +9,25 @@ namespace ConsoleRPG
             Console.WriteLine("Hello world");
 
             // Player 1
-            Player PC = new Player("Jerrin", 49, 18, 15);
-            PC.set_abilities(60, 30, 30, 30);
-            PC.set_MH(new Broadsword());
-            PC.set_OH(new Dagger());
-            PC.set_armour(new Armour("Leather", 20, 2, 10));
-            PC.get_armour().print_stats();
+            Player Jerrin = new Player("Jerrin", 3, 1, 2, 1);
+            Jerrin.set_MH(new Broadsword());
+            Jerrin.set_OH(new Dagger());
+            Jerrin.set_armour(new Armour("Leather", 20, 2, 10));
+            Jerrin.get_armour().print_stats();
             // Player 2
-            Player PC2 = new Player("Wodan", 32, 18, 18);
-            PC2.set_abilities(40, 50, 30, 30);
-            PC2.set_MH(new Broadsword());
-            //PC2.set_OH(new Kite_Shield());
-            PC2.set_armour(new Armour("Chain", 40, 2, 10));
+            Player Wodan = new Player("Wodan", 1, 3, 1, 2);
+            Wodan.set_MH(new Broadsword());
+            Wodan.set_OH(new Kite_Shield());
+            Wodan.set_armour(new Armour("Chain", 40, 2, 10));
             // Print
-            PC2.print_stats();
-            PC.print_stats();
+            Wodan.print_stats();
+            Jerrin.print_stats();
             // Attack
             Console.WriteLine("Jerrin attacks Wodan");
-            Attacks.make_attack(PC,PC.get_MH(), PC2);
-            Attacks.make_attack(PC,PC.get_OH(), PC2);
+            Attacks.make_attack(Jerrin,Jerrin.get_MH(), Wodan);
+            Attacks.make_attack(Jerrin,Jerrin.get_OH(), Wodan);
             Console.WriteLine("Wodan attacks Jerrin");
-            Attacks.make_attack(PC2,PC2.get_MH(), PC);
+            Attacks.make_attack(Wodan,Wodan.get_MH(), Jerrin);
             while (true) { }
                 
         }

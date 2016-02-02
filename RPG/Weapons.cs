@@ -6,8 +6,8 @@ namespace ConsoleRPG
     {
         protected string type;
         protected Damage_Die damage;
-        protected double dodge_mod;
-        protected double parry_mod;             
+        protected int dodge_mod;
+        protected int parry_mod;             
 
         public Weapon(string n, string t, int w, Damage_Die d) : base( n, w){
             name = n;           type = t;
@@ -23,8 +23,8 @@ namespace ConsoleRPG
         public virtual int get_parry(Character ch)
         { int parry = (int)(0.3 * ch.get_strength() + 0.3 * ch.get_speed()); return parry; }
 
-        public virtual double get_dodge_mod() { return dodge_mod; }
-        public virtual double get_parry_mod() { return parry_mod; }
+        public virtual int get_dodge_mod() { return dodge_mod; }
+        public virtual int get_parry_mod() { return parry_mod; }
         public string get_type() { return type; }
 
     }
@@ -32,25 +32,28 @@ namespace ConsoleRPG
     // Light weapon class
     public class Light_Melee_Weapon : Weapon
     {
-        public Light_Melee_Weapon(string n, Damage_Die d) : base(n, "light melee", 10, d) { }
-        public override double get_dodge_mod() { return 0.8; }
-        public override double get_parry_mod() { return 1.2; }
+        public Light_Melee_Weapon(string n, Damage_Die d) : base(n, "light melee", 10, d)
+        {
+            dodge_mod = -1; parry_mod = +1;
+        }
     }
 
     // Medium Weapon class
     public class Medium_Melee_Weapon : Weapon
     {
-        public Medium_Melee_Weapon(string n, Damage_Die d) : base(n, "medium melee", 20, d) { }
-        public override double get_dodge_mod() { return 1.0; }
-        public override double get_parry_mod() { return 1.0; }
+        public Medium_Melee_Weapon(string n, Damage_Die d) : base(n, "medium melee", 20, d)
+        {
+            dodge_mod = 0; parry_mod = 0;
+        }
     }
 
     // Heavy Weapon class
     public class Heavy_Melee_Weapon : Weapon
     {
-        public Heavy_Melee_Weapon(string n, Damage_Die d) : base(n, "heavy melee", 40, d) { }
-        public override double get_dodge_mod() { return 1.2; }
-        public override double get_parry_mod() { return 0.8; }
+        public Heavy_Melee_Weapon(string n, Damage_Die d) : base(n, "heavy melee", 40, d)
+        {
+            dodge_mod = +1; parry_mod = -1;
+        }
     }
 
     public class Dagger : Light_Melee_Weapon
